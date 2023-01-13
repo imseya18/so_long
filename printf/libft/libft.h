@@ -6,7 +6,7 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 15:35:55 by mmorue            #+#    #+#             */
-/*   Updated: 2022/11/21 17:35:49 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/01/13 15:18:33 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void			*ft_memset(void *s, int c, size_t n);
 char			*ft_strchr(const char *s, int c);
 char			*ft_strdup(char *src);
 unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size);
-size_t			ft_strlen(const char *str);
+int				ft_strlen(const char *str);
 int				ft_strncmp(const char *s1, const char *s2, size_t n);
 char			*ft_strrchr(const char *s, int c);
 int				ft_tolower(int c);
