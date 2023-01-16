@@ -6,7 +6,7 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 15:47:44 by mmorue            #+#    #+#             */
-/*   Updated: 2023/01/16 18:02:17 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/01/16 18:13:53 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,6 +193,7 @@ int main(void)
 	if (ft_checkwall(all.map, size, all.sizel) == 0)
 		return (ft_error("invalid map, bad wall"));
 	if (ft_checkressource(&all) == 0)
-		return (ft_error("invalid map, bad ressource"));\
+		return (ft_error("invalid map, bad ressource"));
+		
 	
 }
