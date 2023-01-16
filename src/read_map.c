@@ -6,7 +6,7 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 15:47:44 by mmorue            #+#    #+#             */
-/*   Updated: 2023/01/13 19:24:16 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/01/16 18:02:17 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,14 @@ int	checkline(char *buffer)
 
 int	read_map(int fd)
 {
-	char	buffer[11];
+	char	buffer[2];
 	int		size;
 
-	buffer[10] = '\0';
+	buffer[1] = '\0';
 	size = 1;
 	if (read(fd, 0, 0) < 0 || fd < 0)
 		return (1);
-	while (read(fd, buffer, 10) > 0)
+	while (read(fd, buffer, 1) > 0)
 		size += checkline(buffer);
 	close(fd);
 	return (size);
@@ -140,7 +140,32 @@ int ft_checkressource(t_big *all)
 		return (0);
 	return (1);
 }
+void storecoord(t_big *all)
+{
+	int y;
+	int x;
+	int i;
 
+	i = 0;
+	y = 1;
+	x = 0;
+	all->item = malloc(all->coins * sizeof(t_coins));
+	while (all->map[y + 1])
+	{
+		while (all->map[y][x] && all->map[y][x] != '\n')
+		{
+			if (all->map[y][x] == 'C')
+			{
+				all->item[i].x = y;
+				all->item[i].x = x;
+				i++;
+			}
+			x++;
+		}
+		x = 0;
+		y++;
+	}
+}
 int main(void)
 {
 	int		size;
@@ -159,7 +184,7 @@ int main(void)
 	all.map[size] = 0;
 	fd = open("./map.txt", O_RDONLY);
 	while (i < size)
-		all.map[i++] = get_next_line(fd);			// MANQUE FONCTIONNEMENT SI ERROR DE GNL
+		all.map[i++] = get_next_line(fd);   // MANQUE FONCTIONNEMENT SI ERROR DE GNL
 	if (all.map[size - 1] == 0)
 		return (ft_error("invalid map, empty line"));
 	all.sizel = ft_strlen(all.map[0]);
@@ -168,5 +193,6 @@ int main(void)
 	if (ft_checkwall(all.map, size, all.sizel) == 0)
 		return (ft_error("invalid map, bad wall"));
 	if (ft_checkressource(&all) == 0)
-		return (ft_error("invalid map, bad ressource"));
+		return (ft_error("invalid map, bad ressource"));\
+	
 }
