@@ -6,7 +6,7 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 13:39:57 by mmorue            #+#    #+#             */
-/*   Updated: 2023/01/13 18:49:22 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/01/16 18:14:46 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct s_coin {
 typedef struct s_big {
 	char	**map;
 	char	*line;
+	t_coins *item;	
 	int		sizel;
 	int		coins;
 	int		player;
