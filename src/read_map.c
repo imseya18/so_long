@@ -6,7 +6,7 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 15:47:44 by mmorue            #+#    #+#             */
-/*   Updated: 2023/01/16 18:13:53 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/01/17 17:08:37 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,36 @@ int ft_checkressource(t_big *all)
 		return (0);
 	return (1);
 }
-void storecoord(t_big *all)
+
+void store_coord_pe(t_big *all)
+{
+	int y;
+	int x;
+
+	y = 1;
+	x = 0;
+	while (all->map[y + 1])
+	{
+		while (all->map[y][x] && all->map[y][x] != '\n')
+		{
+			if (all->map[y][x] == 'P')
+			{
+				all->player_c.y = y * TSIZE;
+				all->player_c.x = x * TSIZE;
+			}
+			if (all->map[y][x] == 'E')
+			{
+				all->exit_c.y = y * TSIZE;
+				all->exit_c.x = x * TSIZE;
+			}
+			x++;
+		}
+		x = 0;
+		y++;
+	}
+}
+
+int store_coord(t_big *all)
 {
 	int y;
 	int x;
@@ -150,14 +179,16 @@ void storecoord(t_big *all)
 	y = 1;
 	x = 0;
 	all->item = malloc(all->coins * sizeof(t_coins));
+	if(!all->item)
+		return(ft_free(all));
 	while (all->map[y + 1])
 	{
 		while (all->map[y][x] && all->map[y][x] != '\n')
 		{
 			if (all->map[y][x] == 'C')
 			{
-				all->item[i].x = y;
-				all->item[i].x = x;
+				all->item[i].y = y * TSIZE;
+				all->item[i].x = x * TSIZE;
 				i++;
 			}
 			x++;
@@ -165,7 +196,29 @@ void storecoord(t_big *all)
 		x = 0;
 		y++;
 	}
+	store_coord_pe(all);
+	return(1);
 }
+
+int map_copy(t_big *all, int size)
+{
+	int y;
+
+	y = 0;
+	all->mapcpy = malloc((size + 1) * sizeof(char*));
+	if(!all->mapcpy)
+		return(ft_free(all));  									// faire les FREE.
+	all->mapcpy[size] = 0;
+	while(all->map[y])
+	{
+		all->mapcpy[y] = ft_strdup(all->map[y]);
+		if(!all->mapcpy[y])
+			return(ft_free(all));
+		y++;
+	}
+	return(1);
+}
+
 int main(void)
 {
 	int		size;
@@ -194,6 +247,6 @@ int main(void)
 		return (ft_error("invalid map, bad wall"));
 	if (ft_checkressource(&all) == 0)
 		return (ft_error("invalid map, bad ressource"));
-		
-	
+	store_coord(&all);
+	map_copy(&all, size);
 }
