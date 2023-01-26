@@ -6,7 +6,7 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 14:09:23 by mmorue            #+#    #+#             */
-/*   Updated: 2023/01/11 16:38:13 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/01/26 17:17:32 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,20 +34,15 @@ void	ft_fill_tab_f(t_listpf *start, char *tab)
 	tab[j] = '\0';
 }
 
-int	ft_tab(t_listpf *start, int size)
+char	*ft_tab(t_listpf *start, int size)
 {
 	char	*tab;
-	int		sz;
 
 	tab = malloc((size + 1 * sizeof(char)));
 	if (!tab)
-		return (-1);
+		return (0);
 	ft_fill_tab_f(start, tab);
-	sz = write(1, tab, size);
-	free(tab);
-	if (sz == -1)
-		return (sz);
-	return (0);
+	return (tab);
 }
 
 int	ft_pars(char ftm, t_listpf **start, va_list arg, int *error)
@@ -97,28 +92,24 @@ int	ft_test(const char *ftm, t_listpf **start, va_list arg, int *error)
 	return (size);
 }
 
-int	ft_printf(const char *fmt, ...)
+char	*ft_printf(const char *fmt, ...)
 {
 	t_listpf	*start;
 	va_list		arg;
 	int			size;
 	int			error;
-	int			check;
+	char		*check;
 
 	error = 0;
 	start = 0;
-	check = 0;
 	if (fmt[0] == '\0')
 		return (0);
 	va_start(arg, fmt);
 	size = ft_test(fmt, &start, arg, &error);
 	if (error == 1)
-		size = -1;
-	else
-		check = ft_tab(start, size);
-	if (check == -1)
-		size = -1;
+		return (0);
+	check = ft_tab(start, size);
 	va_end(arg);
 	ft_lstclear_pf(&start);
-	return (size);
+	return (check);
 }

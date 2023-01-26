@@ -6,7 +6,7 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 13:39:57 by mmorue            #+#    #+#             */
-/*   Updated: 2023/01/17 16:58:19 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/01/26 17:22:31 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,40 @@ typedef struct s_coin {
 }	t_coins;
 
 typedef struct s_coord{
-	int x;
-	int y;
+	int	x;
+	int	y;
 }	t_coord;
 
 typedef struct s_big {
-	char		**map;
-	char		**mapcpy;
-	char		*line;
-	t_coins 	*item;
-	t_coord 	player_c;
-	t_coord		exit_c;
-	int			sizel;
-	int			coins;
-	int			player;
-	int			exit;
+	mlx_image_t		**bg;
+	mlx_texture_t 	**img_bg;
+	char			**map;
+	char			**mapcpy;
+	char			*line;
+	t_coins			*item;
+	t_coord			player_c;
+	t_coord			exit_c;
+	t_coord			*wall_c;
+	int				size_x;
+	int 			size_y;
+	int				obstacle;
+	int				coins;
+	int				player;
+	int				exit;
 }	t_big;
+
+int		ft_errormap(char *str);
+int		ft_checksizeline(char **line);
+int		ft_checkwall(char **map, int size, int sizel);
+int		ft_checkchar(char c, t_big *all);
+int		ft_checkressource(t_big *all);
+int		ft_free(t_big *all);
+int		checkline(char *buffer);
+int		read_map(int fd);
+void	store_coord_pe(t_big *all);
+int		store_coord_coin(t_big *all);
+int 	store_coord_obstacle(t_big *all);
+int		map_copy(t_big *all, int size);
+int		pathfinding(char **tab, int y, int x, int *items);
 
 #endif

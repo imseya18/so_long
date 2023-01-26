@@ -6,7 +6,7 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 15:16:46 by mmorue            #+#    #+#             */
-/*   Updated: 2023/01/11 16:45:21 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/01/26 17:12:52 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ int			ft_lstsize_pf(t_listpf *lst);
 char		*ft_itoa_hexa_maj(unsigned int n);
 char		*ft_itoa_hexa(unsigned int n);
 char		*ft_itoa_u(unsigned int n);
-int			ft_printf(const char *fmt, ...);
+char		*ft_printf(const char *fmt, ...);
+char		*ft_tab(t_listpf *start, int size);
 int			ft_test(const char *ftm, t_listpf **start, va_list arg, int *error);
 int			ft_pars(char ftm, t_listpf **start, va_list arg, int *error);
 int			ft_char(char c, t_listpf **start, int *error);
