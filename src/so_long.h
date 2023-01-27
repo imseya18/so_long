@@ -6,7 +6,7 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 13:39:57 by mmorue            #+#    #+#             */
-/*   Updated: 2023/01/26 17:22:31 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/01/27 16:13:27 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # define BPP sizeof(int32_t)
 # define TSIZE 64
+#define WIDTH 1920
+#define HEIGHT 1080
 #include	"../printf/ft_printf.h"
 #include	"../MLX42/include/MLX42/MLX42.h"
 #include	"../get_next_line/get_next_line.h"
@@ -30,8 +32,11 @@ typedef struct s_coord{
 }	t_coord;
 
 typedef struct s_big {
+	mlx_t			*mlx;
 	mlx_image_t		**bg;
-	mlx_texture_t 	**img_bg;
+	mlx_texture_t 	**text_bg;
+	mlx_texture_t 	**text_camp;
+	mlx_texture_t 	**text_coins;
 	char			**map;
 	char			**mapcpy;
 	char			*line;
@@ -52,7 +57,7 @@ int		ft_checksizeline(char **line);
 int		ft_checkwall(char **map, int size, int sizel);
 int		ft_checkchar(char c, t_big *all);
 int		ft_checkressource(t_big *all);
-int		ft_free(t_big *all);
+int		ft_free_exit(t_big *all);
 int		checkline(char *buffer);
 int		read_map(int fd);
 void	store_coord_pe(t_big *all);
@@ -60,5 +65,7 @@ int		store_coord_coin(t_big *all);
 int 	store_coord_obstacle(t_big *all);
 int		map_copy(t_big *all, int size);
 int		pathfinding(char **tab, int y, int x, int *items);
+int 	fill_text(mlx_texture_t **img, int max, char *str);
+int 	ft_storetext(t_big *all);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 15:47:44 by mmorue            #+#    #+#             */
-/*   Updated: 2023/01/26 17:22:15 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/01/27 16:13:40 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,24 +20,33 @@ int ft_storetext(t_big *all)
 
 	i = 0;
 	full_size = all->size_x * all->size_y;
-	all->bg = malloc ((full_size) *  sizeof(mlx_image_t));
-	all->img_bg = malloc(12 * sizeof(mlx_texture_t));
-	while(i < 12)
-	{
-		all->img_bg[i] = mlx_load_png(ft_printf("sprite/%d.png", i));
-		i++;
-		if (!all->img_bg[i])
-			return (0);
-	}
+	all->bg = malloc ((full_size + 4) *  sizeof(mlx_image_t));
+	all->text_bg = malloc( 12 * sizeof(mlx_texture_t));
+	all->text_camp = malloc( 5 * sizeof(mlx_texture_t));
+	fill_text(all->text_bg, 12, "sprite/");
+	fill_text(all->text_camp, 5,"sprite/campfire");
 	return (1);
 }
+int fill_text(mlx_texture_t **img, int max, char *str)
+{
+	int i;
 
+	i = 0;
 
+	while(i < max)
+	{
+		img[i] = mlx_load_png(ft_printf("%s%d.png",str,i));
+		i++;
+		if (!img[i])
+			return (0);         //crée fonction qui free avec le memory manager + exit.
+	}
+	return(1);
+}
 
-int	ft_free(t_big *all)
+int	ft_free_exit(t_big *all)
 {
 	free(all->map);
-	return (0);
+	return(0);
 }
 
 int	checkline(char *buffer)
@@ -85,7 +94,7 @@ int main(void)
 		return (ft_errormap("invalid map"));
 	all.map = malloc((all.size_y + 1) * sizeof(char *));
 	if (!all.map)
-		return (ft_free(&all));
+		return (ft_free_exit(&all));
 	all.map[all.size_y] = 0;
 	fd = open("./src/map.txt", O_RDONLY);
 	while (i < all.size_y)
@@ -105,5 +114,13 @@ int main(void)
 	items = all.coins + all.exit;
 	if (pathfinding(all.mapcpy, all.player_c.y / TSIZE, all.player_c.x / TSIZE, &items) == 0)
 		return (ft_errormap("no path found !!!"));
+	all.mlx = mlx_init(WIDTH, HEIGHT, "MLX42", true);
 	ft_storetext(&all);
+	all.bg[0] = mlx_texture_to_image(all.mlx, all.img_camp[1]);
+	mlx_image_to_window(all.mlx, all.bg[0], 0, 0);
+	mlx_loop(all.mlx);
+	mlx_terminate(all.mlx);
+ 	return (EXIT_SUCCESS);
+
+
 }
