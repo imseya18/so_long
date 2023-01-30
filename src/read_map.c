@@ -6,7 +6,7 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 15:47:44 by mmorue            #+#    #+#             */
-/*   Updated: 2023/01/30 17:07:10 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/01/30 17:24:15 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,15 @@ void display_corner(t_big *all, int y, int x, int j)
 	else if (x == all->size_x - 1)
 		all->img_bg[j] = mlx_texture_to_image(all->mlx, all->text_bg[7]);
 }
+void display_obstacle(t_big *all, int j)
+{
+	if(j % 3 == 0)
+		all->img_bg[j] = mlx_texture_to_image(all->mlx, all->text_bg[9]);
+	else if(j % 5 == 0)
+		all->img_bg[j] = mlx_texture_to_image(all->mlx, all->text_bg[10]);
+	else
+		all->img_bg[j] = mlx_texture_to_image(all->mlx, all->text_bg[11]);
+}	
 void	display_map(t_big *all)
 {
 	int	x;
@@ -39,17 +48,19 @@ void	display_map(t_big *all)
 	int size_x;
 	int size_y;
 
-	x = 0;
-	y = 0;
+	y = -1;
 	j = 0;
-	size_x = 0;
 	size_y = 0;
-	while (all->map[y])
+	while (all->map[++y])
 	{
+		x = 0;
+		size_x = 0;
 		while (all->map[y][x] && all->map[y][x] != '\n')
 		{
 			if (all->map[y][x] == '1' && (y == 0  || x == 0 || y == all->size_y - 1 || x == all->size_x - 1))
 				display_corner(all, y, x, j);
+			else if (all->map[y][x] == '1')
+				display_obstacle(all, j);
 			else
 				all->img_bg[j] = mlx_texture_to_image(all->mlx, all->text_bg[8]);
 			mlx_image_to_window(all->mlx, all->img_bg[j], size_x, size_y);
@@ -58,13 +69,8 @@ void	display_map(t_big *all)
 			j++;
 		}
 		size_y += 64;
-		size_x = 0;
-		y++;
-		x = 0;
 	}
 }
-
-
 
 int ft_storetext(t_big *all)
 {
