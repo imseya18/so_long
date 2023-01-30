@@ -6,7 +6,7 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 13:39:57 by mmorue            #+#    #+#             */
-/*   Updated: 2023/01/27 16:13:27 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/01/30 14:15:12 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,13 @@ typedef struct s_coord{
 
 typedef struct s_big {
 	mlx_t			*mlx;
-	mlx_image_t		**bg;
+	mlx_image_t		**img_bg;
+	mlx_image_t		**img_coin;
+	mlx_image_t		**img_player;
+	mlx_texture_t 	**text_player;
 	mlx_texture_t 	**text_bg;
 	mlx_texture_t 	**text_camp;
-	mlx_texture_t 	**text_coins;
+	mlx_texture_t 	**text_coin;
 	char			**map;
 	char			**mapcpy;
 	char			*line;
