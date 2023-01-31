@@ -6,7 +6,7 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 16:55:07 by mmorue            #+#    #+#             */
-/*   Updated: 2023/01/31 17:18:53 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/01/31 17:54:25 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,9 @@ void	display_map_in(t_big *all, int *j, int size_y, int y)
 {
 	int	x;
 	int	size_x;
-	int	wd_calc;
-	int	hg_calc;
 
-	wd_calc = (WIDTH - (all->size_x * 64)) / 2;
-	hg_calc = (HEIGHT - (all->size_y * 64)) / 2;
+	all->wd_calc = (WIDTH - (all->size_x * 64)) / 2;
+	all->hg_calc = (HEIGHT - (all->size_y * 64)) / 2;
 	x = 0;
 	size_x = 0;
 	while (all->map[y][x] && all->map[y][x] != '\n')
@@ -62,8 +60,8 @@ void	display_map_in(t_big *all, int *j, int size_y, int y)
 			display_obstacle(all, *j);
 		else
 			all->img_bg[*j] = mlx_texture_to_image(all->mlx, all->text_bg[8]);
-		mlx_image_to_window(all->mlx, all->img_bg[*j], size_x + wd_calc,
-			size_y + hg_calc);
+		mlx_image_to_window(all->mlx, all->img_bg[*j], size_x + all->wd_calc,
+			size_y + all->hg_calc);
 		size_x += 64;
 		x++;
 		*j += 1;
@@ -77,11 +75,17 @@ void	display_map_boucle(t_big *all)
 	int	size_y;
 
 	y = -1;
-	j = 0;
+	j = 4;
 	size_y = 0;
 	while (all->map[++y])
 	{
 		display_map_in(all, &j, size_y, y);
 		size_y += 64;
+	}
+	j = -1;
+	while (++j < 4)
+	{
+		all->img_bg[j] = mlx_texture_to_image(all->mlx, all->text_camp[j]);
+		mlx_image_to_window(all->mlx, all->img_bg[0], all->exit_c.x + all->wd_calc, all->exit_c.y + all->hg_calc);
 	}
 }
