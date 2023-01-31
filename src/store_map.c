@@ -6,13 +6,13 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 14:02:13 by mmorue            #+#    #+#             */
-/*   Updated: 2023/01/27 15:40:38 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/01/31 17:19:25 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int store_coord_obstacle(t_big *all)
+int	store_coord_obstacle(t_big *all)
 {
 	int	y;
 	int	x;
@@ -37,8 +37,6 @@ int store_coord_obstacle(t_big *all)
 			x++;
 		}
 	}
-	for(i = 0; i < all->obstacle; i++)
-		printf("-----y = %d-----\n----x = %d-----\n", all->wall_c[i].y, all->wall_c[i].x);
 	return (1);
 }
 
@@ -106,7 +104,7 @@ int	map_copy(t_big *all, int size)
 	y = 0;
 	all->mapcpy = malloc((size + 1) * sizeof(char *));
 	if (!all->mapcpy)
-		return (ft_free_exit(all));  									// faire les FREE.
+		return (ft_free_exit(all));  		// faire les FREE.
 	all->mapcpy[size] = 0;
 	while (all->map[y])
 	{

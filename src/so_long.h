@@ -6,20 +6,20 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 13:39:57 by mmorue            #+#    #+#             */
-/*   Updated: 2023/01/30 14:15:12 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/01/31 17:17:33 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# define BPP sizeof(int32_t)
 # define TSIZE 64
-#define WIDTH 1920
-#define HEIGHT 1080
-#include	"../printf/ft_printf.h"
-#include	"../MLX42/include/MLX42/MLX42.h"
-#include	"../get_next_line/get_next_line.h"
+# define WIDTH 2560
+# define HEIGHT 1440
+# include	"../printf/ft_printf.h"
+# include	"../MLX42/include/MLX42/MLX42.h"
+# include	"../get_next_line/get_next_line.h"
+# include <fcntl.h>
 
 typedef struct s_coin {
 	int	x;
@@ -36,10 +36,10 @@ typedef struct s_big {
 	mlx_image_t		**img_bg;
 	mlx_image_t		**img_coin;
 	mlx_image_t		**img_player;
-	mlx_texture_t 	**text_player;
-	mlx_texture_t 	**text_bg;
-	mlx_texture_t 	**text_camp;
-	mlx_texture_t 	**text_coin;
+	mlx_texture_t	**text_player;
+	mlx_texture_t	**text_bg;
+	mlx_texture_t	**text_camp;
+	mlx_texture_t	**text_coin;
 	char			**map;
 	char			**mapcpy;
 	char			*line;
@@ -48,7 +48,7 @@ typedef struct s_big {
 	t_coord			exit_c;
 	t_coord			*wall_c;
 	int				size_x;
-	int 			size_y;
+	int				size_y;
 	int				obstacle;
 	int				coins;
 	int				player;
@@ -65,10 +65,14 @@ int		checkline(char *buffer);
 int		read_map(int fd);
 void	store_coord_pe(t_big *all);
 int		store_coord_coin(t_big *all);
-int 	store_coord_obstacle(t_big *all);
+int		store_coord_obstacle(t_big *all);
 int		map_copy(t_big *all, int size);
 int		pathfinding(char **tab, int y, int x, int *items);
-int 	fill_text(mlx_texture_t **img, int max, char *str);
-int 	ft_storetext(t_big *all);
+int		fill_text(mlx_texture_t **img, int max, char *str);
+int		ft_storetext(t_big *all);
+void	display_corner(t_big *all, int y, int x, int j);
+void	display_obstacle(t_big *all, int j);
+void	display_map_in(t_big *all, int *j, int size_y, int y);
+void	display_map_boucle(t_big *all);
 
 #endif

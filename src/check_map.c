@@ -6,7 +6,7 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 14:04:08 by mmorue            #+#    #+#             */
-/*   Updated: 2023/01/27 15:39:33 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/01/31 17:18:56 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,13 +93,13 @@ int	ft_checkressource(t_big *all)
 		{
 			if (ft_checkchar(all->map[y][x], all) == 0)
 				return (0);
-			if( y != (all->size_y - 1) && x != (all->size_x - 1) && all->map[y][x] == '1')
+			if (y != (all->size_y - 1) && x != (all->size_x - 1)
+				&& all->map[y][x] == '1')
 				all->obstacle++;
 			x++;
 		}
 		y++;
 	}
-	printf("-----%d------\n", all->obstacle);
 	if (all->player != 1 || all->exit != 1 || all->coins == 0)
 		return (0);
 	return (1);
