@@ -6,7 +6,7 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 13:39:57 by mmorue            #+#    #+#             */
-/*   Updated: 2023/01/31 17:17:33 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/02/01 14:28:55 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct s_coord{
 typedef struct s_big {
 	mlx_t			*mlx;
 	mlx_image_t		**img_bg;
-	mlx_image_t		**img_coin;
+	mlx_image_t		***img_coin;
 	mlx_image_t		**img_player;
 	mlx_texture_t	**text_player;
 	mlx_texture_t	**text_bg;
@@ -47,6 +47,8 @@ typedef struct s_big {
 	t_coord			player_c;
 	t_coord			exit_c;
 	t_coord			*wall_c;
+	int				hg_calc;
+	int				wd_calc;
 	int				size_x;
 	int				size_y;
 	int				obstacle;
@@ -74,5 +76,6 @@ void	display_corner(t_big *all, int y, int x, int j);
 void	display_obstacle(t_big *all, int j);
 void	display_map_in(t_big *all, int *j, int size_y, int y);
 void	display_map_boucle(t_big *all);
+void	display_player_coin(t_big *all);
 
 #endif

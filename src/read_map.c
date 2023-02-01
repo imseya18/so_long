@@ -6,7 +6,7 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 15:47:44 by mmorue            #+#    #+#             */
-/*   Updated: 2023/01/31 17:18:54 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/02/01 14:10:10 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,12 @@ int	ft_storetext(t_big *all)
 	int	full_size;
 	int	i;
 
-	i = 0;
+	i = -1;
 	full_size = all->size_x * all->size_y;
 	all->img_bg = malloc ((full_size + 4) * sizeof(mlx_image_t));
-	all->img_coin = malloc(4 * sizeof(mlx_image_t));
+	all->img_coin = malloc((all->coins) * sizeof(mlx_image_t *));
+	while (++i < all->coins)
+		all->img_coin[i] = malloc(4 * sizeof(mlx_image_t));
 	all->img_player = malloc(16 * sizeof(mlx_image_t));
 	all->text_bg = malloc(12 * sizeof(mlx_texture_t));
 	all->text_camp = malloc(5 * sizeof(mlx_texture_t));

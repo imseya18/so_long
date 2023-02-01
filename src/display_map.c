@@ -6,7 +6,7 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 16:55:07 by mmorue            #+#    #+#             */
-/*   Updated: 2023/01/31 17:54:25 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/02/01 15:15:42 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,36 @@ void	display_map_in(t_big *all, int *j, int size_y, int y)
 		x++;
 		*j += 1;
 	}
+	display_player_coin(all);
+}
+
+void	display_player_coin(t_big *a)
+{
+	int	i;
+	int	j;
+
+	j = -1;
+	while (++j < a->coins)
+	{
+		i = -1;
+		while (++i < 4)
+		{
+			a->img_coin[j][i] = mlx_texture_to_image(a->mlx, a->text_coin[i]);
+			mlx_image_to_window(a->mlx, a->img_coin[j][i], a->item[j].x
+				+ a->wd_calc, a->item[j].y + a->hg_calc);
+			if (i != 0)
+				a->img_coin[j][i]->enabled = false;
+		}
+	}
+	j = -1;
+	while (++j < 16)
+	{
+		a->img_player[j] = mlx_texture_to_image(a->mlx, a->text_player[j]);
+		mlx_image_to_window(a->mlx, a->img_player[j], a->player_c.x
+			+ a->wd_calc, a->player_c.y + a->hg_calc);
+		if (j != 0)
+			a->img_player[j]->enabled = false;
+	}
 }
 
 void	display_map_boucle(t_big *all)
@@ -86,6 +116,9 @@ void	display_map_boucle(t_big *all)
 	while (++j < 4)
 	{
 		all->img_bg[j] = mlx_texture_to_image(all->mlx, all->text_camp[j]);
-		mlx_image_to_window(all->mlx, all->img_bg[0], all->exit_c.x + all->wd_calc, all->exit_c.y + all->hg_calc);
+		mlx_image_to_window(all->mlx, all->img_bg[j], all->exit_c.x
+			+ all->wd_calc, all->exit_c.y + all->hg_calc);
+		if (j != 0)
+			all->img_bg[j]->enabled = false;
 	}
 }
