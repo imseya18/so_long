@@ -6,7 +6,7 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 13:39:57 by mmorue            #+#    #+#             */
-/*   Updated: 2023/02/01 14:28:55 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/02/02 17:38:32 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,15 @@ typedef struct s_big {
 	char			*line;
 	t_coins			*item;
 	t_coord			player_c;
+	t_coord			player_c_box;
 	t_coord			exit_c;
 	t_coord			*wall_c;
 	int				hg_calc;
 	int				wd_calc;
 	int				size_x;
 	int				size_y;
+	int				size_x_pix;
+	int				size_y_pix;
 	int				obstacle;
 	int				coins;
 	int				player;
@@ -77,5 +80,7 @@ void	display_obstacle(t_big *all, int j);
 void	display_map_in(t_big *all, int *j, int size_y, int y);
 void	display_map_boucle(t_big *all);
 void	display_player_coin(t_big *all);
+int		hit_x(t_big *all, int pos);
+int		hit_y(t_big *all, int pos);
 
 #endif
