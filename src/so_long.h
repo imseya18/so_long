@@ -6,7 +6,7 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 13:39:57 by mmorue            #+#    #+#             */
-/*   Updated: 2023/02/02 17:38:32 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/02/07 17:39:02 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@
 # include	"../MLX42/include/MLX42/MLX42.h"
 # include	"../get_next_line/get_next_line.h"
 # include <fcntl.h>
+# define SP 5
+# define PL 5
+# define PH 20
 
 typedef struct s_coin {
 	int	x;

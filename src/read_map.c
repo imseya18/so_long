@@ -6,7 +6,7 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 15:47:44 by mmorue            #+#    #+#             */
-/*   Updated: 2023/02/02 18:07:38 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/02/07 17:33:41 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,19 +114,46 @@ int test_map(t_big *all)
 		return (ft_errormap("invalid map, bad ressource"));
 	return (1);
 }
+
+int check_box_down(t_big *all)
+{
+	int i;
+
+	i = -1;
+	if(all->player_c_box.y + 64 + SP > all->size_y_pix - 64)
+	{
+		return(hit_y(all, all->size_y_pix - 128));
+	}
+	i = -1;
+	while(++i < all->obstacle)
+	{
+		if (all->player_c_box.y + 64 - PH + SP > all->wall_c[i].y - PH
+		&& all->player_c_box.y + SP < all->wall_c[i].y - 32 + PH
+		&& all->player_c_box.x - 64 + PL < all->wall_c[i].x
+		&& all->player_c_box.x > all ->wall_c[i].x - 64 + PH)
+		{
+			return(hit_y(all, all->wall_c[i].y - 64 + SP));
+		}
+	}
+	return(1);
+}
+
 void ft_moove_down(t_big *all)
 {
 	int i;
 
 	i = 0;
 	all->img_player[0]->enabled = true;
-	all->player_c_box.y += 5;
-	while(i < 16)
+	if(check_box_down(all) == 1)
 	{
-		all->img_player[i]->instances[0].y += 5;
-		if(i != 0)
-			all->img_player[i]->enabled = false;
-		i++;
+		all->player_c_box.y += SP;
+		while(i < 16)
+		{
+			all->img_player[i]->instances[0].y += SP;
+			if(i != 0)
+				all->img_player[i]->enabled = false;
+			i++;
+		}
 	}
 }
 
@@ -135,19 +162,19 @@ int check_box_up(t_big *all)
 	int i;
 
 	i = -1;
-	if(all->player_c_box.y - 5 < 64)
+	if(all->player_c_box.y - SP < 32)
 	{
-		return(hit_y(all, 64));
+		return(hit_y(all, 32));
 	}
 	i = -1;
 	while(++i < all->obstacle)
 	{
-		if(all->player_c_box.x + 64 > all->wall_c[i].x
-		&& all->player_c_box.x  < all->wall_c[i].x + 64
-		&& all->player_c_box.y - 59 < all->wall_c[i].y
-		&& all->player_c_box.y - 5 > all->wall_c[i].y - 64)
+		if(all->player_c_box.y + 64 - SP - PH > all->wall_c[i].y + 32 + PH
+		&& all->player_c_box.y - SP  < all->wall_c[i].y + 64 - PH
+		&& all->player_c_box.x - 64 + PL < all->wall_c[i].x
+		&& all->player_c_box.x > all ->wall_c[i].x - 64 + PH)
 		{
-			hit_y(all, all->wall_c[i].y + 64);
+			return(hit_y(all, all->wall_c[i].y + 64 - PH));
 		}
 	}
 	return(1);
@@ -161,10 +188,10 @@ void ft_moove_up(t_big *all)
 	all->img_player[4]->enabled = true;
 	if(check_box_up(all) == 1)
 	{
-		all->player_c_box.y -= 5;
+		all->player_c_box.y -= SP;
 		while(i < 16)
 		{
-			all->img_player[i]->instances[0].y -= 5;
+			all->img_player[i]->instances[0].y -= SP;
 			if(i != 4)
 				all->img_player[i]->enabled = false;
 			i++;
@@ -177,19 +204,19 @@ int check_box_left(t_big *all)
 	int i;
 
 	i = -1;
-	if(all->player_c_box.x - 5 < 64)
+	if(all->player_c_box.x - SP < 64)
 	{
 		return(hit_x(all, 64));
 	}
 	i = -1;
 	while(++i < all->obstacle)
 	{
-		if(all->player_c_box.x + 59 > all->wall_c[i].x
-		&& all->player_c_box.x - 5 < all->wall_c[i].x + 64
-		&& all->player_c_box.y - 64 < all->wall_c[i].y
-		&& all->player_c_box.y > all ->wall_c[i].y - 64)
+		if(all->player_c_box.x + 64 - SP - PL> all->wall_c[i].x + 32 + PL
+		&& all->player_c_box.x - SP  < all->wall_c[i].x + 64 - PL
+		&& all->player_c_box.y - 64 + PH < all->wall_c[i].y
+		&& all->player_c_box.y > all ->wall_c[i].y - 64 + PL)
 		{
-			hit_x(all, all->wall_c[i].x + 64);
+			return(hit_x(all, all->wall_c[i].x + 64 - SP));
 		}
 	}
 	return(1);
@@ -198,15 +225,15 @@ int check_box_left(t_big *all)
 void ft_moove_left(t_big *all)
 {
 	int i;
-
+	
 	i = 0;
 	all->img_player[8]->enabled = true;
 	if(check_box_left(all) == 1)
 	{
-		all->player_c_box.x -= 5;
+		all->player_c_box.x -= SP;
 		while(i < 16)
 		{
-			all->img_player[i]->instances[0].x -= 5;
+			all->img_player[i]->instances[0].x -= SP;
 			if(i != 8)
 				all->img_player[i]->enabled = false;
 			i++;
@@ -239,19 +266,19 @@ int check_box_right(t_big *all)
 	int i;
 
 	i = -1;
-	if(all->player_c_box.x + 69 > all->size_x_pix - 64)
+	if (all->player_c_box.x + 64 + SP > all->size_x_pix - 64)
 	{
-		return(hit_x(all, all->size_x_pix - 128));
+		return (hit_x(all, all->size_x_pix - 128));
 	}
 	i = -1;
 	while(++i < all->obstacle)
 	{
-		if(all->player_c_box.x + 69 > all->wall_c[i].x
-		&& all->player_c_box.x + 5 < all->wall_c[i].x + 64
-		&& all->player_c_box.y - 64 < all->wall_c[i].y
-		&& all->player_c_box.y > all ->wall_c[i].y - 64)
+		if (all->player_c_box.x + 64 - PL + SP > all->wall_c[i].x - PL
+		&& all->player_c_box.x + SP < all->wall_c[i].x + 32 + PL
+		&& all->player_c_box.y - 64 + PH < all->wall_c[i].y
+		&& all->player_c_box.y > all ->wall_c[i].y - 64 + PL)
 		{
-			hit_x(all, all->wall_c[i].x - 64);
+			return(hit_x(all, all->wall_c[i].x - 64 + SP));
 		}
 	}
 	return(1);
@@ -265,10 +292,10 @@ void ft_moove_right(t_big *all)
 	all->img_player[12]->enabled = true;
 	if(check_box_right(all) == 1)
 	{
-		all->player_c_box.x += 5;
+		all->player_c_box.x += SP;
 		while(i < 16)
 		{
-			all->img_player[i]->instances[0].x += 5;
+			all->img_player[i]->instances[0].x += SP;
 			if(i != 12)
 				all->img_player[i]->enabled = false;
 			i++;
