@@ -6,7 +6,7 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:58:37 by mmorue            #+#    #+#             */
-/*   Updated: 2023/02/08 15:03:33 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/02/08 16:25:34 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,25 @@ void	ft_hook(void *param)
 	if (mlx_is_key_down(all->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(all->mlx);
 	if (mlx_is_key_down(all->mlx, MLX_KEY_UP))
+	{
 		ft_moove_up(all);
+		check_box_coin_up(all);
+	}
 	if (mlx_is_key_down(all->mlx, MLX_KEY_DOWN))
+	{
 		ft_moove_down(all);
+		check_box_coin_down(all);
+	}
 	if (mlx_is_key_down(all->mlx, MLX_KEY_LEFT))
+	{
 		ft_moove_left(all);
+		check_box_coin_left(all);
+	}
 	if (mlx_is_key_down(all->mlx, MLX_KEY_RIGHT))
+	{
 		ft_moove_right(all);
+		check_box_coin_right(all);
+	}
 }
 
 void	store_coord_pix(t_big *all)

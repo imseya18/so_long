@@ -6,7 +6,7 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:26:14 by mmorue            #+#    #+#             */
-/*   Updated: 2023/02/08 15:03:35 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/02/08 15:56:11 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	check_box_left(t_big *all)
 		if (all->player_c_box.x + 64 - SP - PL > all->wall_c[i].x + 32 + PL
 			&& all->player_c_box.x - SP < all->wall_c[i].x + 64 - PL
 			&& all->player_c_box.y - 64 + PH < all->wall_c[i].y
-			&& all->player_c_box.y > all ->wall_c[i].y - 64 + PL)
+			&& all->player_c_box.y > all->wall_c[i].y - 64 + PL)
 		{
 			return (hit_x(all, all->wall_c[i].x + 64 - SP));
 		}
@@ -69,7 +69,7 @@ int	check_box_right(t_big *all)
 		if (all->player_c_box.x + 64 - PL + SP > all->wall_c[i].x - PL
 			&& all->player_c_box.x + SP < all->wall_c[i].x + 32 + PL
 			&& all->player_c_box.y - 64 + PH < all->wall_c[i].y
-			&& all->player_c_box.y > all ->wall_c[i].y - 64 + PL)
+			&& all->player_c_box.y > all->wall_c[i].y - 64 + PL)
 		{
 			return (hit_x(all, all->wall_c[i].x - 64 + SP));
 		}

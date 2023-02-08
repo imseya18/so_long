@@ -6,7 +6,7 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 13:39:57 by mmorue            #+#    #+#             */
-/*   Updated: 2023/02/08 14:29:45 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/02/08 16:13:03 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 typedef struct s_coin {
 	int	x;
 	int	y;
+	int	on_map;
 }	t_coins;
 
 typedef struct s_coord{
@@ -95,4 +96,8 @@ int		check_box_right(t_big *all);
 void	ft_moove_right(t_big *all);
 void	ft_hook(void *param);
 void	store_coord_pix(t_big *all);
+int		check_box_coin_right(t_big *all);
+int		check_box_coin_left(t_big *all);
+int		check_box_coin_up(t_big *all);
+int		check_box_coin_down(t_big *all);
 #endif
