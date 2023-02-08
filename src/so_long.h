@@ -6,7 +6,7 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 13:39:57 by mmorue            #+#    #+#             */
-/*   Updated: 2023/02/07 17:39:02 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/02/08 14:29:45 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,14 @@ void	display_map_boucle(t_big *all);
 void	display_player_coin(t_big *all);
 int		hit_x(t_big *all, int pos);
 int		hit_y(t_big *all, int pos);
-
+int		check_box_down(t_big *all);
+void	ft_moove_down(t_big *all);
+int		check_box_up(t_big *all);
+void	ft_moove_up(t_big *all);
+int		check_box_left(t_big *all);
+void	ft_moove_left(t_big *all);
+int		check_box_right(t_big *all);
+void	ft_moove_right(t_big *all);
+void	ft_hook(void *param);
+void	store_coord_pix(t_big *all);
 #endif
