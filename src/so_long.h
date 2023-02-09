@@ -6,7 +6,7 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 13:39:57 by mmorue            #+#    #+#             */
-/*   Updated: 2023/02/08 16:13:03 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/02/09 15:02:31 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef struct s_big {
 	int				size_y_pix;
 	int				obstacle;
 	int				coins;
+	int				coins_check;
 	int				player;
 	int				exit;
 }	t_big;
@@ -100,4 +101,9 @@ int		check_box_coin_right(t_big *all);
 int		check_box_coin_left(t_big *all);
 int		check_box_coin_up(t_big *all);
 int		check_box_coin_down(t_big *all);
+void	display_exit(t_big *all);
+int		check_box_exit_right(t_big *all);
+int		check_box_exit_left(t_big *all);
+int		check_box_exit_up(t_big *all);
+int		check_box_exit_down(t_big *all);
 #endif

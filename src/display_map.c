@@ -6,7 +6,7 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 16:55:07 by mmorue            #+#    #+#             */
-/*   Updated: 2023/02/02 14:56:29 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/02/09 15:02:20 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void	display_map_boucle(t_big *all)
 	int	size_y;
 
 	y = -1;
-	j = 4;
+	j = 5;
 	size_y = 0;
 	while (all->map[++y])
 	{
@@ -112,7 +112,7 @@ void	display_map_boucle(t_big *all)
 		size_y += 64;
 	}
 	j = -1;
-	while (++j < 4)
+	while (++j < 5)
 	{
 		all->img_bg[j] = mlx_texture_to_image(all->mlx, all->text_camp[j]);
 		mlx_image_to_window(all->mlx, all->img_bg[j], all->exit_c.x

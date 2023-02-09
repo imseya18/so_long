@@ -6,7 +6,7 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:58:37 by mmorue            #+#    #+#             */
-/*   Updated: 2023/02/08 16:25:34 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/02/09 15:02:23 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,32 +59,27 @@ void	ft_hook(void *param)
 	all = param;
 	if (mlx_is_key_down(all->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(all->mlx);
-	if (mlx_is_key_down(all->mlx, MLX_KEY_UP))
-	{
+	if (mlx_is_key_down(all->mlx, MLX_KEY_W))
 		ft_moove_up(all);
-		check_box_coin_up(all);
-	}
-	if (mlx_is_key_down(all->mlx, MLX_KEY_DOWN))
-	{
+	if (mlx_is_key_down(all->mlx, MLX_KEY_S))
 		ft_moove_down(all);
-		check_box_coin_down(all);
-	}
-	if (mlx_is_key_down(all->mlx, MLX_KEY_LEFT))
-	{
+	if (mlx_is_key_down(all->mlx, MLX_KEY_A))
 		ft_moove_left(all);
-		check_box_coin_left(all);
-	}
-	if (mlx_is_key_down(all->mlx, MLX_KEY_RIGHT))
-	{
+	if (mlx_is_key_down(all->mlx, MLX_KEY_D))
 		ft_moove_right(all);
-		check_box_coin_right(all);
-	}
+	display_exit(all);
 }
 
 void	store_coord_pix(t_big *all)
 {
+	int	i;
+
+	i = -1;
 	all->player_c_box.x = all->player_c.x;
 	all->player_c_box.y = all->player_c.y;
 	all->size_x_pix = all->size_x * 64;
 	all->size_y_pix = all->size_y * 64;
+	all->coins_check = all->coins;
+	while (++i < all->coins)
+		all->item[i].on_map = 0;
 }

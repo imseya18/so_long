@@ -6,7 +6,7 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:23:53 by mmorue            #+#    #+#             */
-/*   Updated: 2023/02/08 15:56:11 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/02/09 15:02:19 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	ft_moove_down(t_big *all)
 			i++;
 		}
 	}
+	check_box_coin_down(all);
 }
 
 int	check_box_up(t_big *all)
@@ -94,6 +95,7 @@ void	ft_moove_up(t_big *all)
 			i++;
 		}
 	}
+	check_box_coin_up(all);
 }
 
 int	hit_y(t_big *all, int pos)
