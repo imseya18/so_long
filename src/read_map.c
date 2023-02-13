@@ -6,7 +6,7 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 15:47:44 by mmorue            #+#    #+#             */
-/*   Updated: 2023/02/09 15:02:24 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/02/13 16:01:41 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	test_map(t_big *all)
 		all->map[i++] = get_next_line(fd);   // MANQUE FONCTIONNEMENT SI ERROR DE GNL
 	if (all->map[all->size_y - 1] == 0)
 		return (ft_errormap("invalid map, empty line"));
-	all->size_x = ft_strlen(all->map[0]);
+	all->size_x = ft_strlen_n(all->map[0]);
 	if (!ft_checksizeline(all->map))
 		return (ft_errormap("invalid map, line not same size"));
 	if (ft_checkwall(all->map, all->size_y, all->size_x) == 0)

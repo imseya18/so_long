@@ -6,7 +6,7 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:58:37 by mmorue            #+#    #+#             */
-/*   Updated: 2023/02/09 15:02:23 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/02/13 16:01:46 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void	ft_hook(void *param)
 		ft_moove_left(all);
 	if (mlx_is_key_down(all->mlx, MLX_KEY_D))
 		ft_moove_right(all);
+	print_move(all);
 	display_exit(all);
 }
 

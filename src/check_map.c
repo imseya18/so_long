@@ -6,7 +6,7 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 14:04:08 by mmorue            #+#    #+#             */
-/*   Updated: 2023/01/31 17:18:56 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/02/13 16:01:42 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ int	ft_checksizeline(char **line)
 
 	i = 0;
 	nb = 0;
-	sizeline = ft_strlen(line[0]);
+	sizeline = ft_strlen_n(line[0]);
 	while (line[nb])
 	{
-		if (ft_strlen(line[nb]) != sizeline)
+		if (ft_strlen_n(line[nb]) != sizeline)
 			return (0);
 		nb++;
 	}

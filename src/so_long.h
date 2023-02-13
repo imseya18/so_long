@@ -6,7 +6,7 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 13:39:57 by mmorue            #+#    #+#             */
-/*   Updated: 2023/02/09 15:02:31 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/02/13 15:58:47 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct s_big {
 	t_coord			player_c_box;
 	t_coord			exit_c;
 	t_coord			*wall_c;
+	t_coord			temp_player_c;
 	int				hg_calc;
 	int				wd_calc;
 	int				size_x;
@@ -63,6 +64,8 @@ typedef struct s_big {
 	int				coins_check;
 	int				player;
 	int				exit;
+	int				movement;
+	long long		temp_time;
 }	t_big;
 
 int		ft_errormap(char *str);
@@ -106,4 +109,6 @@ int		check_box_exit_right(t_big *all);
 int		check_box_exit_left(t_big *all);
 int		check_box_exit_up(t_big *all);
 int		check_box_exit_down(t_big *all);
+void	print_move(t_big *all);
+int		ft_strlen_n(const char *str);
 #endif

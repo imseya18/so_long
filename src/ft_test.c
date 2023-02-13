@@ -6,18 +6,18 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 15:04:09 by mmorue            #+#    #+#             */
-/*   Updated: 2023/01/26 17:12:58 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/02/02 15:49:50 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
-#include <string.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <memory.h>
-#define WIDTH 1920
-#define HEIGHT 1080
+//#include "so_long.h"
+//#include <string.h>
+//#include <stdlib.h>
+//#include <stdio.h>
+//#include <unistd.h>
+//#include <memory.h>
+//#define WIDTH 1920
+//#define HEIGHT 1080
 
 //static void ft_error(void)
 //{
@@ -49,7 +49,7 @@
 //	mlx_terminate(test);
 //	return (EXIT_SUCCESS);
 //}
-
+//
 //#include <stdlib.h>
 //#include <stdio.h>
 //#include <unistd.h>
