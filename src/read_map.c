@@ -6,7 +6,7 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 15:47:44 by mmorue            #+#    #+#             */
-/*   Updated: 2023/02/13 16:01:41 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/02/14 16:41:31 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,22 +49,22 @@ int	read_map(int fd)
 	return (size);
 }
 
-int	test_map(t_big *all)
+int	test_map(t_big *all, char *str)
 {
 	int	i;
 	int	fd;
 
 	i = 0;
-	all->size_y = read_map(open("./src/map.txt", O_RDONLY));
+	all->size_y = read_map(open(str, O_RDONLY));
 	if (all->size_y <= 2)
 		return (ft_errormap("invalid map"));
 	all->map = malloc((all->size_y + 1) * sizeof(char *));
 	if (!all->map)
 		return (ft_free_exit(all));
 	all->map[all->size_y] = 0;
-	fd = open("./src/map.txt", O_RDONLY);
+	fd = open(str, O_RDONLY);
 	while (i < all->size_y)
-		all->map[i++] = get_next_line(fd);   // MANQUE FONCTIONNEMENT SI ERROR DE GNL
+		all->map[i++] = get_next_line(fd);
 	if (all->map[all->size_y - 1] == 0)
 		return (ft_errormap("invalid map, empty line"));
 	all->size_x = ft_strlen_n(all->map[0]);
@@ -77,19 +77,22 @@ int	test_map(t_big *all)
 	return (1);
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
 	t_big	all;
 	int		items;
 
+	if (argc != 2)
+		return (0);
 	ft_bzero(&all, sizeof(t_big));
-	test_map(&all);
+	if (check_ber(argv[1]) == 0)
+		return (0);
+	if (test_map(&all, argv[1]) == 0)
+		return (0);
 	store_coord_coin(&all);
 	store_coord_obstacle(&all);
 	map_copy(&all, all.size_y);
 	items = all.coins + all.exit;
-	all.player_c_box.x = all.player_c.x;
-	all.player_c_box.y = all.player_c.y;
 	if (pathfinding(all.mapcpy, all.player_c.y / TSIZE,
 			all.player_c.x / TSIZE, &items) == 0)
 		return (ft_errormap("no path found !!!"));

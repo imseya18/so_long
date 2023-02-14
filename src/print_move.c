@@ -6,7 +6,7 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:31:04 by mmorue            #+#    #+#             */
-/*   Updated: 2023/02/13 16:01:44 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/02/14 16:31:01 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,28 @@ int	ft_strlen_n(const char *str)
 	return (i);
 }
 
+int	check_ber(char *str)
+{
+	int	i;
+
+	i = ft_strlen(str);
+	if (str[i - 1] != 'r' || str[i - 2] != 'e' || str[i - 3] != 'b'
+		|| str[i - 4] != '.')
+		return (ft_errormap("map isn't .ber"));
+	return (1);
+}
+
 void	print_move(t_big *all)
 {
-	if(all->temp_time < mlx_get_time() * 1000)
+	if (all->temp_time < mlx_get_time() * 1000)
 	{
 		all->temp_time = mlx_get_time() * 1000 + 50;
 		if (all->temp_player_c.x != all->player_c_box.x
 			|| all->temp_player_c.y != all->player_c_box.y)
 		{
 			all->movement += 1;
-			//printf("%d\n", all->movement);
-			write(1, ft_printf("MOVES: %d\n", all->movement), ft_strlen(ft_printf("MOVES: %d\n", all->movement)));
+			write(1, ft_printf("MOVES: %d\n", all->movement),
+				ft_strlen(ft_printf("MOVES: %d\n", all->movement)));
 			all->temp_player_c.x = all->player_c_box.x;
 			all->temp_player_c.y = all->player_c_box.y;
 		}

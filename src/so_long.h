@@ -6,7 +6,7 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 13:39:57 by mmorue            #+#    #+#             */
-/*   Updated: 2023/02/13 15:58:47 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/02/14 16:31:24 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,4 +111,5 @@ int		check_box_exit_up(t_big *all);
 int		check_box_exit_down(t_big *all);
 void	print_move(t_big *all);
 int		ft_strlen_n(const char *str);
+int		check_ber(char *str);
 #endif
