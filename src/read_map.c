@@ -6,16 +6,16 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 15:47:44 by mmorue            #+#    #+#             */
-/*   Updated: 2023/02/14 16:41:31 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/02/16 15:50:11 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	ft_free_exit(t_big *all)
+int	ft_free_exit(void)
 {
-	free(all->map);
-	return (0);
+	ftm_free_all();
+	exit(0);
 }
 
 int	checkline(char *buffer)
@@ -55,16 +55,17 @@ int	test_map(t_big *all, char *str)
 	int	fd;
 
 	i = 0;
-	all->size_y = read_map(open(str, O_RDONLY));
+	all->size_y = read_map(ftm_open(str, O_RDONLY));
 	if (all->size_y <= 2)
 		return (ft_errormap("invalid map"));
-	all->map = malloc((all->size_y + 1) * sizeof(char *));
+	all->map = ftm_malloc((all->size_y + 1) * sizeof(char *));
 	if (!all->map)
-		return (ft_free_exit(all));
+		return (ft_free_exit());
 	all->map[all->size_y] = 0;
-	fd = open(str, O_RDONLY);
+	fd = ftm_open(str, O_RDONLY);
 	while (i < all->size_y)
 		all->map[i++] = get_next_line(fd);
+	ftm_close(fd);
 	if (all->map[all->size_y - 1] == 0)
 		return (ft_errormap("invalid map, empty line"));
 	all->size_x = ft_strlen_n(all->map[0]);

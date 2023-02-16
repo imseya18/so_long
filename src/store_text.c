@@ -6,7 +6,7 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:58:37 by mmorue            #+#    #+#             */
-/*   Updated: 2023/02/14 17:00:40 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/02/16 15:50:09 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,15 @@ int	ft_storetext(t_big *all)
 
 	i = -1;
 	full_size = all->size_x * all->size_y;
-	all->img_bg = malloc ((full_size + 4) * sizeof(mlx_image_t));
-	all->img_coin = malloc((all->coins) * sizeof(mlx_image_t *));
+	all->img_bg = ftm_malloc ((full_size + 4) * sizeof(mlx_image_t));
+	all->img_coin = ftm_malloc((all->coins) * sizeof(mlx_image_t *));
 	while (++i < all->coins)
-		all->img_coin[i] = malloc(4 * sizeof(mlx_image_t));
-	all->img_player = malloc(16 * sizeof(mlx_image_t));
-	all->text_bg = malloc(12 * sizeof(mlx_texture_t));
-	all->text_camp = malloc(5 * sizeof(mlx_texture_t));
-	all->text_coin = malloc(4 * sizeof(mlx_texture_t));
-	all->text_player = malloc(16 * sizeof(mlx_image_t));
+		all->img_coin[i] = ftm_malloc(4 * sizeof(mlx_image_t));
+	all->img_player = ftm_malloc(16 * sizeof(mlx_image_t));
+	all->text_bg = ftm_malloc(12 * sizeof(mlx_texture_t));
+	all->text_camp = ftm_malloc(5 * sizeof(mlx_texture_t));
+	all->text_coin = ftm_malloc(4 * sizeof(mlx_texture_t));
+	all->text_player = ftm_malloc(16 * sizeof(mlx_image_t));
 	fill_text(all->text_bg, 12, "sprite/bg/");
 	fill_text(all->text_camp, 5, "sprite/campfire/campfire");
 	fill_text(all->text_coin, 4, "sprite/coin/coin");

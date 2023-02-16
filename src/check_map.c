@@ -6,7 +6,7 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 14:04:08 by mmorue            #+#    #+#             */
-/*   Updated: 2023/02/14 16:41:30 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/02/16 15:50:26 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	ft_errormap(char *str)
 	write(1, "Error\n", 6);
 	write(1, str, k);
 	write(1, "\n", 1);
+	ftm_free_all();
 	return (0);
 }
 

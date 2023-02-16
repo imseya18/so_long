@@ -6,7 +6,7 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 13:39:57 by mmorue            #+#    #+#             */
-/*   Updated: 2023/02/14 16:31:24 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/02/16 15:50:10 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include	"../printf/ft_printf.h"
 # include	"../MLX42/include/MLX42/MLX42.h"
 # include	"../get_next_line/get_next_line.h"
+# include	"../memory_manager_2/memory_manager.h"
 # include <fcntl.h>
 # define SP 5
 # define PL 5
@@ -73,7 +74,7 @@ int		ft_checksizeline(char **line);
 int		ft_checkwall(char **map, int size, int sizel);
 int		ft_checkchar(char c, t_big *all);
 int		ft_checkressource(t_big *all);
-int		ft_free_exit(t_big *all);
+int		ft_free_exit(void);
 int		checkline(char *buffer);
 int		read_map(int fd);
 void	store_coord_pe(t_big *all);
