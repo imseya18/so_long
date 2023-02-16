@@ -6,7 +6,7 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:58:37 by mmorue            #+#    #+#             */
-/*   Updated: 2023/02/14 16:31:06 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/02/14 17:00:40 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	fill_text(mlx_texture_t **img, int max, char *str)
 	while (i < max)
 	{
 		img[i] = mlx_load_png(ft_printf("%s%d.png", str, i));
-		if (!img[i])		 		//crée fonction qui free avec le memory manager + exit.
+		if (!img[i])		 									//crée fonction qui free avec le memory manager + exit.
 			return (0);
 		i++;
 	}
