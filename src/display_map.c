@@ -6,7 +6,7 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 16:55:07 by mmorue            #+#    #+#             */
-/*   Updated: 2023/02/16 15:50:22 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/02/17 16:44:12 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,8 +115,11 @@ void	display_map_boucle(t_big *all)
 	while (++j < 5)
 	{
 		all->img_bg[j] = mlx_texture_to_image(all->mlx, all->text_camp[j]);
-		mlx_image_to_window(all->mlx, all->img_bg[j], all->exit_c.x
-			+ all->wd_calc, all->exit_c.y + all->hg_calc);
+		if (!all->img_bg[j])
+			ft_free_exit();
+		if (mlx_image_to_window(all->mlx, all->img_bg[j], all->exit_c.x
+				+ all->wd_calc, all->exit_c.y + all->hg_calc))
+			ft_free_exit();
 		if (j != 0)
 			all->img_bg[j]->enabled = false;
 	}

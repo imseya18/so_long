@@ -6,7 +6,7 @@
 /*   By: mmorue <mmorue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 14:02:13 by mmorue            #+#    #+#             */
-/*   Updated: 2023/02/16 15:50:07 by mmorue           ###   ########.fr       */
+/*   Updated: 2023/02/17 16:44:35 by mmorue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ int	map_copy(t_big *all, int size)
 	y = 0;
 	all->mapcpy = ftm_malloc((size + 1) * sizeof(char *));
 	if (!all->mapcpy)
-		return (ft_free_exit());  		// faire les FREE.
+		return (ft_free_exit());
 	all->mapcpy[size] = 0;
 	while (all->map[y])
 	{
@@ -128,6 +128,6 @@ int	pathfinding(char **tab, int y, int x, int *items)
 	pathfinding(tab, y, x - 1, items);
 	pathfinding(tab, y, x + 1, items);
 	if (*items == 0)
-		return (1);	
+		return (1);
 	return (0);
 }

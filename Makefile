@@ -4,8 +4,9 @@ LIBMLX		:= ./MLX42
 FTPRINTF	:= ./printf
 GNL			:= ./get_next_line
 MM 			:= ./memory_manager_2
+
 HEADERS	:= -I ./include -I $(LIBMLX)/include
-LIBS	:= $(GNL)/gnl.a $(FTPRINTF)/libftprintf.a $(LIBMLX)/libmlx42.a $(MM)/memory_mng.a -lglfw -L "/Users/mmorue/.brew/opt/glfw/lib/" -lm 
+LIBS	:= $(GNL)/gnl.a $(FTPRINTF)/libftprintf.a $(LIBMLX)/libmlx42.a $(MM)/memory_mng.a  -lglfw -L "/Users/mmorue/.brew/opt/glfw/lib/" -lm 
 SRCS	:= $(shell find ./src -iname "*.c")
 OBJS	:= ${SRCS:.c=.o}
 
